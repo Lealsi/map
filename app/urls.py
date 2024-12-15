@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .import views
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path('descricao_documento/<int:pk>/', views.descricao_documento, name='descricao_documento'),
     path('documento/<int:pk>/edit/', views.editar_documento, name='editar_documento'),
     path('catalogada/<int:pk>/xml/', views.gerar_xml, name='gerar_xml'),
+
 ]

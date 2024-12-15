@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<div class="container text-center" style="padding: 30px 15px 0;margin-bottom: 255px">
+        <div class="row" style="padding-top: 65px; padding-bottom: 65px;">
+            <div class="col">
+                <div class="card auth-card border-dark mb-3" style="max-width: 25rem; float: none; margin: 0 auto">
+                     <div class="card-body">
+                        <h4 class="card-title text-center">Entrar na plataforma M.A.P. </h4>
+
+                     <form method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next }}">
+                            <div style="text-align: left; margin: 10px">
+                                <label for="id_username">E-mail*</label>
+                                <input class="form-control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+
+                                <label style="padding-top: 10px" for="id_password">Senha*</label>
+                                <input class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                            </div>
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                     </form>
+
+                <p class="change-form-p">Quer criar uma conta? <a href="/accounts/register">Clique aqui!</a></p>
+            </div>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+
+{% endblock %}

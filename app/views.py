@@ -3,6 +3,7 @@ from .forms import CatalogadaForm, DocumentoForm
 from .models import Catalogada, Documento
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 import xml.etree.ElementTree as xml
 import re
 
@@ -10,7 +11,7 @@ import re
 def home(request):
     return render(request, 'app/home.html')
 
-
+@login_required()
 def catalogar(request):
     if request.method == "POST":
         catalogada_form = CatalogadaForm(request.POST)
@@ -51,7 +52,7 @@ def catalogar(request):
         print('Não post')
     return render(request, 'app/catalogo.html', {'catalogada_form': catalogada_form})
 
-
+@login_required()
 def catalog_detail(request):
     # catalogada = Catalogada.objects.filter(published_date__lte=timezone.now()).order_by('id')
     if request.method == "POST":
@@ -74,7 +75,7 @@ def catalog_detail(request):
                 # print(id)
         return render(request, 'app/catalog_detail.html', {'catalogada': catalogadas})
 
-
+@login_required()
 def descricao(request, pk):
     catalogada = get_object_or_404(Catalogada, pk=pk)
     catalogada_form = CatalogadaForm(instance=catalogada)
@@ -83,7 +84,7 @@ def descricao(request, pk):
     #print(responsavel_catalogacao)
     return render(request, 'app/descricao.html', {'catalogada_form': catalogada_form, 'catalogada': catalogada})
 
-
+@login_required()
 def editar(request, pk):
     catalogada = get_object_or_404(Catalogada, pk=pk)
     if request.method == "POST":
@@ -112,11 +113,12 @@ def editar(request, pk):
     return render(request, 'app/editar.html',
                   {'catalogada_form': catalogada_form, 'catalogada': catalogada})
 
+@login_required()
 def pesquisar(request, pk):
     catalogada = get_object_or_404(Catalogada, pk=pk)
     return render(request, 'app/resultado.html', {'catalogada': catalogada})
 
-
+@login_required()
 def inserirDocumento(request):
     catalogadas = Catalogada.objects.all
     if request.method == "POST":
@@ -151,7 +153,7 @@ def inserirDocumento(request):
 
     return render(request, 'app/documento.html', {'documento_form': documento_form, "lista_catalogadas": catalogadas})
 
-
+@login_required()
 def resultado_documento(request):
     if request.method == "POST":
         chave = request.POST.get('search_box', None)
@@ -165,7 +167,7 @@ def resultado_documento(request):
         return render(request, 'app/resultado_documento.html',
                       {'documentos': documentos})
 
-
+@login_required()
 def descricao_documento(request, pk):
     documento = get_object_or_404(Documento, pk=pk)
     documento_form = DocumentoForm(instance=documento)
@@ -178,7 +180,7 @@ def descricao_documento(request, pk):
                                                             'informacoes_internas': informacoes_internas,
                                                             'catalogaga': catalogada})
 
-
+@login_required()
 def editar_documento(request, pk):
     documento = get_object_or_404(Documento, pk=pk)
     catalogadas = Catalogada.objects.all
@@ -261,7 +263,7 @@ def editar_documento(request, pk):
                    "catalogada": catalogada,
                    "documento": documento})
 
-
+@login_required()
 def gerar_xml(request, pk):
     catalogada = get_object_or_404(Catalogada, pk=pk)
     print("gerar xml")
