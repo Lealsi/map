@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 import xml.etree.ElementTree as xml
 import re
 
-
 def home(request):
     return render(request, 'app/home.html')
 

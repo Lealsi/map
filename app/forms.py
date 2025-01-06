@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 
-
 class CatalogadaForm(forms.ModelForm):
 
     class Meta:
@@ -36,8 +35,5 @@ class DocumentoForm(forms.ModelForm):
                   'trabalhos_andamento', 'trabalhos_derivados', 'tema', 'subtema',
                   'link_gdrive', 'gx_media_links', 'informacoes_internas', 'publicar')
 
-
-class UserForm(forms.ModelForm):
-    pass
 
 
