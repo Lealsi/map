@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<div class="container text-center" style="padding: 30px 15px 0;">
+        <div class="row" style="padding-top: 65px; padding-bottom: 65px;">
+            <div class="col">
+                <div class="card auth-card border-dark mb-3" style="max-width: 25rem; float: none; margin: 0 auto">
+                     <div class="card-body">
+                        <h4 class="card-title text-center">Criar uma conta na plataforma M.A.P. </h4>
+
+                     <form method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next }}">
+                            <div style="text-align: left; margin: 10px">
+
+                                <div style="text-align: left; margin: 10px">
+                                    <p><label for="convite">Código do convite</label>
+                                        <input class="form-control" type="text" name="convite" maxlength="150" autocapitalize="none" autofocus required id="id_convite"></p>
+
+                                    <p><label for="id_username">E-mail</label>
+                                        <input class="form-control" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username">
+                                        <small class="form-text text-muted">Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.</small></p>
+                                    <p><label for="id_password1">Senha</label>
+                                        <input class="form-control" type="password" name="password1" autocomplete="new-password" required id="id_password1"> </p>
+                                        <small class="form-text text-muted">
+                                            <ul>
+                                                <li>Sua senha não pode ser muito parecida com o resto das suas informações pessoais.</li>
+                                                <li>Sua senha precisa conter pelo menos 8 caracteres.</li>
+                                                <li>Sua senha não pode ser uma senha comumente utilizada.</li>
+                                                <li>Sua senha não pode ser inteiramente numérica.</li>
+                                            </ul>
+                                        </small>
+                                    <p><label for="id_password2">Confirmação de senha</label>
+                                        <input class="form-control" type="password" name="password2" autocomplete="new-password" required id="id_password2">
+                                        <small class="form-text text-muted">Informe a mesma senha informada anteriormente, para verificação.</small></p>
+                                </div>
+
+                            </div>
+                        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                     </form>
+
+                <p class="change-form-p">Já possui uma conta? <a href="/accounts/login">Clique aqui!</a></p>
+            </div>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+
+
+
+{% endblock %}
