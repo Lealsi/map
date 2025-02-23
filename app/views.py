@@ -9,7 +9,9 @@ import re
 
 
 def home(request):
-    return render(request, 'app/home.html')
+    catalogadas = Catalogada.objects.all()
+    documentos = Documento.objects.all()
+    return render(request, 'app/home.html', {'catalogada': catalogadas, 'documentos': documentos} )
 
 @login_required()
 def catalogar(request):
