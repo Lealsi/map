@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 import xml.etree.ElementTree as xml
 import re
 
-
 def home(request):
     catalogadas = Catalogada.objects.all()
     documentos = Documento.objects.all()

@@ -29,7 +29,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'app',
     'widget_tweaks',
     'accounts'
-
 ]
 
 MIDDLEWARE = [
@@ -88,14 +87,16 @@ WSGI_APPLICATION = 'map.wsgi.application'
 #     }
 # }
 
+# Vamos fixar mysql/mariadb
+
 DATABASES = {
     "default": {
-        "ENGINE": str(os.getenv('ENGINE')),
-        "NAME": str(os.getenv('NAME')),
-        "USER": str(os.getenv('USER')),
-        "PASSWORD":str(os.getenv('PASSWORD')),
-        "HOST": str(os.getenv('HOST')),
-        "PORT": str(os.getenv('PORT')),
+        "ENGINE": 'django.db.backends.mysql',
+        "NAME": str(os.getenv('MYSQL_NAME')),
+        "USER": str(os.getenv('MYSQL_USER')),
+        "PASSWORD":str(os.getenv('MYSQL_PASSWORD')),
+        "HOST": str(os.getenv('MYSQL_HOST')),
+        "PORT": str(os.getenv('MYSQL_PORT')),
     }
 }
 
